@@ -1,0 +1,1 @@
+module.exports='我是模块化文件夹中的app.js'
