@@ -1,0 +1,20 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "study npm",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "jquery": "^3.7.1",
+    "send_liz": "^1.0.0",
+    "uniq": "^1.0.1"
+  },
+  "devDependencies": {
+    "less": "^4.4.2"
+  }
+}
