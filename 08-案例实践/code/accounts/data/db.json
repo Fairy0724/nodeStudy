@@ -1,0 +1,28 @@
+{
+  "accounts": [
+    {
+      "id": "BJRLsGKQb",
+      "title": "年末舞台",
+      "time": "2025-12-20",
+      "type": "1",
+      "account": "20000",
+      "remarks": "到账"
+    },
+    {
+      "id": "eX90KDXgm",
+      "title": "年末舞台",
+      "time": "2025-12-20",
+      "type": "1",
+      "account": "20000",
+      "remarks": "到账"
+    },
+    {
+      "id": 1,
+      "title": "购买商品",
+      "time": "2023-04-15",
+      "account": 100,
+      "type": "-1",
+      "remarks": "购买商品"
+    }
+  ]
+}
