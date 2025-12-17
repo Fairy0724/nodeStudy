@@ -7,7 +7,7 @@ const utc = require('dayjs/plugin/utc')
 // 扩展插件
 dayjs.extend(utc)
 // 引入AccountModel
-const AccountModel = require('../models/AccountModel');
+const AccountModel = require('../../models/AccountModel');
 
 // 记账本列表
 router.get('/accounts', (req, res, next) => {

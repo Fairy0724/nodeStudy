@@ -4,7 +4,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
+var indexRouter = require('./routes/web/index');
+// 导入account接口路由
+const accountRouter = require('./routes/api/account');
 
 var app = express();
 
@@ -20,6 +22,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // 路由
 app.use('/', indexRouter);
+// 挂载accountApi路由
+app.use('/api', accountRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
