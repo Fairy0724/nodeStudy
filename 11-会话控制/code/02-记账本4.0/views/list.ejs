@@ -26,6 +26,17 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-lg-8 col-lg-offset-2">
+        <div class="row" style="margin-bottom: 10px;">
+          <div class="col-xs-12 text-right"> <!-- 和添加按钮同右对齐，布局一致 -->
+            <!-- 使用btn btn-danger（和添加按钮的btn btn-primary样式一致，仅颜色为红色，符合退出操作） -->
+            <form action="/logout" method="post">
+              <button type="submit" class="btn btn-danger">
+                <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                退出
+              </button>
+            </form>
+          </div>
+        </div>
         <div class="row">
           <h2 class="col-xs-6">记账本</h2>
           <h2 class="col-xs-6 text-right">

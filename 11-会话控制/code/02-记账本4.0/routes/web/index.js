@@ -1,16 +1,25 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+// 引入AccountModel
+const AccountModel = require('../../models/AccountModel');
+// 引入判断登录中间件
+const checkLoginMiddleware = require('../../middlewares/checkLoginMiddleWare');
 // 引入dayjs
 const dayjs = require('dayjs')
 // 引入utc插件
 const utc = require('dayjs/plugin/utc')
 // 扩展插件
 dayjs.extend(utc)
-// 引入AccountModel
-const AccountModel = require('../../models/AccountModel');
+// 引入路由模块
+const router = express.Router();
+
+// 添加首页路由规则
+router.get('/', (req, res) => {
+  // 重定向
+  res.redirect('/accounts');
+})
 
 // 记账本列表
-router.get('/accounts', (req, res, next) => {
+router.get('/accounts', checkLoginMiddleware, (req, res) => {
   // 读取集合信息
   AccountModel.find()
     .sort({ time: -1 })
@@ -33,12 +42,12 @@ router.get('/accounts', (req, res, next) => {
 });
 
 // 添加记录
-router.get('/accounts/create', (req, res, next) => {
+router.get('/accounts/create', checkLoginMiddleware, (req, res, next) => {
   res.render('create');
 });
 
 // 新增记录
-router.post('/accounts', (req, res, next) => {
+router.post('/accounts', checkLoginMiddleware, (req, res, next) => {
   // 插入数据库
   AccountModel.create({
     ...req.body,
@@ -55,7 +64,7 @@ router.post('/accounts', (req, res, next) => {
 });
 
 // 删除记录
-router.get('/accounts/:id', (req, res, next) => {
+router.get('/accounts/:id', checkLoginMiddleware, (req, res, next) => {
   // 获取params的id参数
   const id = req.params.id;
   // 删除
@@ -68,6 +77,6 @@ router.get('/accounts/:id', (req, res, next) => {
       console.log('删除失败', err);
       return
     }
-  );
+    );
 });
 module.exports = router;

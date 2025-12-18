@@ -1,8 +1,8 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
 // 引入会话控制模块
 const session = require('express-session');
@@ -18,7 +18,7 @@ const authRouter = require('./routes/web/auth');
 // 导入配置项
 const { dbHost, dbPort, dbName } = require('./config/config');
 
-var app = express();
+const app = express();
 
 // 会话控制中间件
 app.use(session({
@@ -63,7 +63,8 @@ app.use('/api', accountRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  next(createError(404));
+  // 响应404错误
+  res.render('404');
 });
 
 // error handler

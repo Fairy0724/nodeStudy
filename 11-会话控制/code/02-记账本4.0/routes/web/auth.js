@@ -1,10 +1,10 @@
 const express = require('express');
-const router = express.Router();
 // 引入bcryptjs模块，用于密码加密
 const bcrypt = require('bcryptjs');
 // 引入UserModel模型对象
 const UserModel = require('../../models/UserModel')
 
+const router = express.Router();
 //  注册页面
 router.get('/reg', (req, res) => {
   // 响应html
@@ -88,5 +88,14 @@ router.post('/login', async (req, res) => {
     console.error('登录失败：', error); // 打印错误日志
     res.render('auth/login', { msg: '登录失败，请稍后重试' });
   }
+})
+
+// 退出登录
+router.post('/logout', (req, res) => {
+  // 销毁session
+  req.session.destroy(() => {
+    // 提示
+    res.render('success', { msg: '退出登录成功哦~~', url: '/login' });
+  })
 })
 module.exports = router;
