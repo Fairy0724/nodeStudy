@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet" />
+  <style>
+    label {
+      font-weight: normal;
+    }
+
+    .panel-body .glyphicon-remove {
+      display: none;
+    }
+
+    .panel-body:hover .glyphicon-remove {
+      display: inline-block
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-lg-8 col-lg-offset-2">
+        <div class="row" style="margin-bottom: 10px;">
+          <div class="col-xs-12 text-right"> <!-- 和添加按钮同右对齐，布局一致 -->
+            <!-- 使用btn btn-danger（和添加按钮的btn btn-primary样式一致，仅颜色为红色，符合退出操作） -->
+            <form action="/logout" method="post">
+              <button type="submit" class="btn btn-danger">
+                <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                退出
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="row">
+          <h2 class="col-xs-6">记账本</h2>
+          <h2 class="col-xs-6 text-right">
+            <a href="accounts/create" class="btn btn-primary">添加账单</a>
+          </h2>
+        </div>
+
+        <hr />
+        <div class="accounts">
+          <% accounts.forEach(account=> { %>
+            <div class="panel <%= account.type===-1?'panel-danger':'panel-success' %>">
+              <div class="panel-heading">
+                <%= account.time %>
+              </div>
+              <div class="panel-body">
+                <div class="col-xs-6">
+                  <%= account.title %>
+                </div>
+                <div class="col-xs-2 text-center">
+                  <span class="label <%= account.type===-1?'label-warning':'label-success' %>">
+                    <%= account.type===-1 ?'支出':'收入' %>
+                  </span>
+                </div>
+                <div class="col-xs-2 text-right">
+                  <%= account.account %> 元
+                </div>
+                <div class="col-xs-2 text-right">
+                  <!-- 删除按钮 -->
+                  <a class="delete-btn" href="accounts/<%= account._id %>">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <% }) %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  const deleteBtn = document.querySelectorAll('.delete-btn');
+  // 绑定事件
+  deleteBtn.forEach(item => {
+    item.addEventListener('click', (e) => {
+      if (confirm('确定要删除吗？')) {
+        return true;
+      }
+      else {
+        // 阻止默认行为
+        e.preventDefault();
+      }
+    })
+  })
+</script>
+
+</html>
